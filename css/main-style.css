@@ -56,12 +56,3 @@ footer {
     padding-top: 1rem;
     border-top: 1px solid #444;
 }
-
-/* Títulos específicos dentro de cada fila (requiere :has, moderno) */
-p:has(#character-id) > strong,
-p:has(#character-born) > strong,
-p:has(#character-dead) > strong,
-p:has(#character-family) > strong {
-  color: #ffd166; /* dorado suave que contrasta con el tema */
-}
-
