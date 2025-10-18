@@ -1,14 +1,12 @@
 const express = require("express");
 const axios = require("axios");
-const bodyParser = require("body-parser");
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+const path = require("path");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-const path = require("path");
 
 
 app.get("/", (req, res) => {
