@@ -8,11 +8,10 @@ app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
-
 app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
   res.redirect("/characters/1");
 });
-
 
 app.get("/characters/:id", async (req, res) => {
   const id = parseInt(req.params.id);
