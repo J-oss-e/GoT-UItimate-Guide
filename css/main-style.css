@@ -1,0 +1,67 @@
+body {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    background-image: url('https://images.unsplash.com/photo-1500632899015-613288f44232?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    backdrop-filter: blur(3px);
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-family: 'Cinzel', serif; /* Una fuente que evoca fantasía */
+    color: #e0e0e0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-control {
+    background-color: #333;
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.form-control:focus {
+    background-color: #444;
+    border-color: #777;
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #8b0000; /* Un rojo oscuro, como el de los Lannister */
+    border-color: #6a0000;
+}
+
+.btn-primary:hover {
+    background-color: #a10000;
+    border-color: #8b0000;
+}
+
+footer {
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+}
+
+/* Títulos específicos dentro de cada fila (requiere :has, moderno) */
+p:has(#character-id) > strong,
+p:has(#character-born) > strong,
+p:has(#character-dead) > strong,
+p:has(#character-family) > strong {
+  color: #ffd166; /* dorado suave que contrasta con el tema */
+}
+

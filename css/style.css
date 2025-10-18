@@ -1,0 +1,122 @@
+body {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    background-image: url('https://images.unsplash.com/photo-1500632899015-613288f44232?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    color: #e0e0e0;
+    text-shadow: 2px 2px 4px rgba(147, 126, 126, 0.5);
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #444;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.form-control {
+    background-color: #333;
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.form-control:focus {
+    background-color: #444;
+    border-color: #777;
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #8b0000;
+    border-color: #6a0000;
+}
+
+.btn-primary:hover {
+    background-color: #a10000;
+    border-color: #8b0000;
+}
+
+#character-image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 2rem auto;
+    display: block;
+    border: 3px solid #444;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-title {
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.card-body h6 {
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #bbb;
+}
+
+#family-crest {
+    max-width: 80px;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#navigation button {
+    min-width: 120px;
+    background-color: #333;
+    border-color: #555;
+}
+
+#navigation button:hover {
+    background-color: #444;
+    border-color: #777;
+}
+
+.alert-danger {
+    background-color: #8b0000;
+    color: #f0f0f0;
+    border-color: #6a0000;
+}
+
+.alert-danger a {
+    color: #ffdddd;
+    font-weight: bold;
+}
+
+p:has(#character-id) > strong,
+p:has(#character-born) > strong,
+p:has(#character-dead) > strong,
+p:has(#character-family) > strong {
+  color: #ffd16688; 
+}
+
+.card-text > strong + span {
+  color: #ffffff78; 
+  font-weight: 700; 
+}
+
+
+#character-titles > li,
+#character-aliases > li {
+  color: #ffffff78; 
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 0.15rem;
+}
+
