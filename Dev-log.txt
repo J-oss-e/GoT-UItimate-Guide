@@ -1,0 +1,133 @@
+Project / Module: Midterm II
+Date: 17/10/2025
+Goals for the documented session
+[ ] Set up Express server
+[ ] Connect to two APIs and merge responses
+[ ] Frontend
+[ ] Use next and previous to get characters information
+[ ] If you meet the first character, when you press previous, go to the last one
+[ ] Search by name
+Tasks Completed
+[ ] Set up Express server
+[ ] Connect only to one API and display as much data as possible
+Use of Gen AI
+Document how you used Gen AI (e.g., Copilot, ChatGPT, etc.)
+PROMPT 1
+Prompt: “Generate a color palette that fits the GoT theme and apply it to the 2 CSS files.”
+Output: I modify the CSS files by applying the darker color palette and modifying the fonts to more suitable ones.
+Edits: I modified some of the given colors to make them clearer and more legible, and modified the font so it didn't look so out of place..
+Reflection: It helped me get a general idea of ​​which design suited him best.
+PROMPT 2
+Prompt: “Fix the information extraction from the API and implement the second API to the JS”
+Output: Fixed compatibility issues between APIs, improved the logic behind the code that was already there, and integrated the second API.
+Edits: Didn't modify anything of the result given, just asked for an explanation of the code given so I can understand it.
+Reflection: Helped me understand in a more practical way how to work with APIs.
+PROMPT 3
+Prompt: [code] How can I get the id from the URL and send the parameter to the client.
+Output: Suggested to use split.
+Edits: I added the function split to my code, created a new variable to save the id and sent the parameter with the character info.
+
+
+Reflection: It is easy to get parts of an array using split. I didn't know what the function was.
+What I Learned
+How to use express.json() middleware
+Difference between useEffect and useLayoutEffect in React
+How to structure a MongoDB schema for nested data
+How to use split function …
+Challenges & Bugs
+❌ The data asked by the instructions comes from both APIs and it is very difficult to merge both responses since the names are different in both of them, in one of them there are characters that don’t have name, and there are properties that one API has but the other one doesn’t. 
+✅ Chose to use only one API and the missing data (the images) will be got by another mean.
+❌ To get the id information we had to get to the character’s URL property because it was inside the URL.
+✅ We took the URL response, splitted it, take the part that has the id, save that into a new variable and send it to the client with the character info response. 
+Resources Used
+The documentation from the APIs to know how to request things.
+Next Steps
+Find out how we’re going to get the images.
+Finish the tasks that we could complete.
+Personal Reflection
+Angel:
+Learned how to work with APIs and a different teamwork experience, with a bit of downsides but trying to give the best result possible. I learned about basic node and how to work with express in a better way and how to connect it to the front end done at first.
+
+
+The biggest challenge we faced was to display information from both APIs. We tried to save the info from both APIs into separated arrays and merge them by comparing names, but it was very difficult since the parameters were very different and although the names were the same, they didn't match. At the end we erased that part of the code and implemented another solution that we haven't found. It is frustrating to think that you lost time because at the end you didn't implement something that took you a lot of time, but the important thing is to go to the next part and look for other solutions.
+
+
+Date: 18/10/2025
+Goals for the documented session
+[ ] Use next and previous to get characters information
+[ ] If you meet the first character, when you press previous, go to the last one
+[ ] Search by name
+Tasks Completed
+[ ] Use next and previous to get characters information
+[ ] If you meet the first character, when you press previous, go to the last one
+[ ] Search by name
+Use of Gen AI
+PROMPT 1
+Prompt: “TypeError: C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\views\character.ejs:34 32|
+33|
+34 <% const searchTerm = character.name && character.name.trim() !== "" ? character.name : character.alliances[0]; %>
+35| <% const imageSearchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(searchTerm)}` %>;
+36|Cannot read properties of undefined (reading '0') at eval (eval at compile (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\ejs\lib\ejs.js:673:12), :15:112) at character (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\ejs\lib\ejs.js:703:17) at tryHandleCache (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\ejs\lib\ejs.js:274:36) at exports.renderFile [as engine] (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\ejs\lib\ejs.js:491:10) at View.render (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\express\lib\view.js:139:8) at tryRender (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\express\lib\application.js:627:10) at Function.render (C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\express\lib\application.js:574:3) at ServerResponse.render (C:\Users\andreDocuments\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\node_modules\express\lib\response.js:909:7) at C:\Users\andre\Documents\Escuelita\Universidad\Quinto semestre\Second Midterm\GoT-UItimate-Guide\server.js:28:9 at process.processTicksAndRejections (node:internal/process/task_queues:105:5)”
+Output:The error you're seeing is caused by trying to access character.alliances[0], but character.alliances is either undefined or not an array. Here's how to fix it safely.
+
+
+Edits: If the character didn't have name or alliances, the variable was undefined and the server sent an error. We implemented a condition to manage that problem. 
+Reflection: I have problems identifying the cause of the errors I get, which makes it difficult to think of a solution. I need to pay more attention to what the error says to learn how to identify them.
+
+
+PROMPT 2
+Prompt: “make this 1 indexed for a circular array. I have 2134 IDs <% const prevId = ""+(((parseInt(id) - 1 + 2134) % 2134)); %>”
+Output: To make your circular array 1-indexed (so IDs go from 1 → 2134, instead of 0 → 2133), adjust your formula like this:
+<% const prevId = "" + (((parseInt(id) - 2 + 2134) % 2134) + 1); %>
+Edits: We changed the 2 for 1
+Reflection:This little detail throwed an undefined error and it was difficult to understand that the problem was that number. This is something that happens to me a lot.
+PROMPT 3
+Prompt: I want to SEARCH FOR IMAGES OF CHARACTERS on my own EJS express app. I only have the character name. I want it to be free and as simple as possible. I'm using the API “An API of Ice and Fire".
+Output: const fetch = require("node-fetch");
+
+
+async function getCharacterImage(name) {
+  const query = encodeURIComponent(name);
+  const res = await fetch(https://gameofthrones.fandom.com/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${query});
+  const data = await res.json();
+  const pages = data.query.pages;
+  const page = Object.values(pages)[0];
+  return page?.original?.source || null;
+}
+
+
+// Example:
+getCharacterImage("Jon Snow").then(console.log);
+
+
+Edit:  Adapted that part of the code into our code so that it searched for the name. It was added to the characters endpoint and in the EJS template the parameters of the image were changed so that they matched the request.
+What I Learned
+Summarize key takeaways or new concepts. (e.g.)
+The circular array implementation that I learned in data structures is really important for more implementations. I didn't imagine that I would use it so soon.
+The only way I could think of to find the images was to search on Google, but that didn't work. It wasn't as easy as it seemed. I never really figured out why it didn't work, and I looked for other options. I didn't know there were so many APIs for finding images.
+It is important to manage errors to maintain the flow of the code because since there are many properties in the API that don't have content, when the code tries to get the value of them, it is undefined and may throw an error. That’s why adding conditions to manage those errors is very important to achieve the goal. There were many times when I got stuck in an undefined error, I couldn’t imagine the cause of the problem until I realized it was simple. I mean, I thought that the problem was the logic, but it was another kind of error.
+I learned about split functions. To get the ID of the character as displayed information, we had to take the array from the API response and take the last part after ‘/’, then split it by ? and # to get only the id. That id was saved into a variable and sent to the client.
+Challenges & Bugs
+Note any issues you faced and how you resolved them. (e.g.)
+❌ The server were throwing a lot of errors and didn't know why. The errors were “undefined function, undefined variable..”
+✅ When debugging we realized that the problems were caused by writing the code in a wrong way. The function had spelling and syntax mistakes.
+❌ The operation used for pressing the button 
+✅ It wasn’t the correct solution, there were parts of the operation that had to change. I mean we had (id- 1 + 2134) % 2134) + 1 but the correct one was (id- 2 + 2134) % 2134) + 1 
+❌Google search was not working
+✅I looked for another solution
+❌The value of the father, mother and spouse were an URL instead of names, so we couldn't display the information directly.
+✅We took the URL and send another request to the API, access to the character name and send it as a variable to the template.
+❌The description of the family crest was in another endpoint of the API.
+✅We took the first alliances value, which redirects the user to one house endpoint, in it there were the description crest value. We did the same thing as when we wanted to get the family.
+Resources Used
+Google to search for a solution to look for the images online. 
+https://placehold.co/ to generate placeholders for the images that were not found.
+Wikimedia to search for the images.
+https://github.com/joakimskoog/AnApiOfIceAndFire.git to understand better the relationship between characters in the API and find the correct way to display the crest description. If you request with the character endpoint, the alliances had the URL of the houses, so you had to request with the houses endpoint and take the description from there. I mean, this repo helped us to understand the flow of endpoints we had to follow to display the required information. We also used it to know the amount of characters that the API has and can make the circular array for pagination.
+The APIs documentation
+Postman to see the responses
+Personal Reflection
+Andrea: It was a very challenging exercise because the time stressed me so much and I thought that the solutions to the challenges were going to be very difficult to implement. Although the implementation of the images were not something I didn’t completely know, finding the solution and combining it to the code was difficult because there were moments in which I didn’t know what the problem was, so I couldn't make the code work. Thanks to the exercise I was able to understand better the way in which different endpoints of an API can communicate and how to get different data that at first view could seem that are not available in the repo.
+
+
+
