@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><%=character.name%></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <header class="container text-center my-4">
+        <a href="index.html" style="text-decoration: none;">
+            <h1>GoT Ultimate Guide</h1>
+        </a>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <form action="/search" method="GET" class="d-flex w-100">
+                        <input type="text" name="name" id="searchInput" class="form-control" placeholder="Search character by name...">
+                        <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="character-display" class="card mb-4" style="max-width: 800px; margin: auto;">
+            <div class="row g-0">
+                <div class="col-md-4 text-center">
+                    <img
+                        id="character-image"
+                        src="<%= image %>"
+                        class="img-fluid rounded-start mb-3"
+                        alt="<%= character?.name || 'Character Image' %>"
+                        style="max-width: 300px;"
+                        referrerpolicy="no-referrer"
+                    />
+                </div>
+
+
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span id="character-firstName"><%=character.name%></span>
+                        </h5>
+                        <p class="card-text"><strong>ID:</strong> <span id="character-id"><%=id%></span></p>
+                        <p class="card-text"><strong>Born:</strong> <span id="character-born"><%=character.born%></span></p>
+                        <p class="card-text"><strong>Dead:</strong> <span id="character-dead"><%=character.died%></span></p>
+                        <p class="card-text"><strong>Father:</strong> <span id="character-family"><%=father%></span></p>
+                        <p class="card-text"><strong>Mother:</strong> <span id="character-family"><%=mother%></span></p>
+                        <p class="card-text"><strong>Spouse:</strong> <span id="character-family"><%=spouse%></span></p>
+                        <p class="card-text"><strong>Family Crest:</strong> <span id="character-crest"><%=crest%></span></p>
+                        
+                        <h6>Titles:</h6>
+                        <ul id="character-titles" class="list-unstyled">
+                            <li><%=character.titles%></li>
+                        </ul>
+                        <h6>Aliases:</h6>
+                        <ul id="character-aliases" class="list-unstyled">
+                            <li><%=character.aliases%></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="navigation" class="d-flex justify-content-center mb-4">
+            <% const prevId = "" + (((parseInt(id) - 2 + 2134) % 2134) + 1); %>
+
+            <form action="/characters/<%= prevId %>" method="GET">
+                <button type="submit" id="prevButton" class="btn btn-secondary mx-2">Previous</button>
+            </form>
+
+                
+            <% const nextId = ""+((parseInt(id) % 2134)+1); %>
+            <form action="/characters/<%= nextId %>" method="GET">
+                <button type="submit" id="nextButton" class="btn btn-secondary mx-2">Next</button>
+            </form>
+        </div>
+
+        <div id="error-screen" class="alert alert-danger text-center" style="display: none;">
+            <p>Character not found. <a href="#" id="back-to-start">Go back to the beginning</a>.</p>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

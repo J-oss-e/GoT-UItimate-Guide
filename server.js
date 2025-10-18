@@ -7,63 +7,91 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+const path = require("path");
+
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/html/index.html");
+  res.redirect("/characters/1");
 });
 
-let characters=[];
-let charactersIandF=[];
 
-app.get('/api/datosGot', (req, res) => {
-    axios.get('https://thronesapi.com/api/v2/Characters/')
-    .then(response => {
+app.get("/characters/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  let character = null;
+  let image = "https://placehold.co/200x200?text=Image+Not+Found";
+  let crest = "No crest available"
+  let father = ""
+  let mother = ""
+  let spouse = ""
 
-    characters= data.map( c=> ({
-    id: c.name,
-    firstName: c.firstname,
-    lastName: c.lastname,
-    title: c.title,
-    family: c.title,
-    image: c.title,
+  try {
+    const response = await axios.get(`https://anapioficeandfire.com/api/characters/${id}`);
+    character = response.data;
+
+    const name = character.name?.trim() || null;
+    const houseURL = character.allegiances[0]?.trim() || null;
+
+    if (name) {
+      const fandomRes = await axios.get("https://gameofthrones.fandom.com/api.php", {
+        params: {
+          action: "query",
+          prop: "pageimages",
+          format: "json",
+          piprop: "original",
+          titles: name,
+          origin: "*",
+        },
+      });
+      
+      if (houseURL){
+          const houseResponse = await axios.get(houseURL);
+          crest = houseResponse.data.coatOfArms
+        }
+        
+        const pages = fandomRes.data.query?.pages || {};
+        const page = Object.values(pages)[0];
+        if (page?.original?.source) image = page.original.source;
+    }
     
-    
-}));
-    res.json(response.data);
-    })
+        if (character.father?.trim()) father = (await axios.get(character.father)).data.name || "";
+        if (character.mother?.trim()) mother = (await axios.get(character.mother)).data.name || "";
+        if (character.spouse?.trim()) spouse = (await axios.get(character.spouse)).data.name || "";
+} catch (error) {
 
-     .catch(error => {
-            console.error(error);
-            res.status(500).json({ error: 'Hubo un problema al obtener los datos' });
-        });
+    console.error("Error fetching character:", error.message);
+    image = "https://via.placeholder.com/300x400.png?text=Error";
+  }
 
-          });
-
-          
-app.get('/api/datosIandF', (req, res) => {
-    axios.get('https://anapioficeandfire.com/api/characters')
-    .then(response => {
-  
-    charactersIandF= data.map( c=> ({
-    name: c.name,
-    born: c.firstname,
-    died: c.lastname,
-    titles: c.title,
-    aliases: c.family,
-    
-}));
-
-  res.json(response.data);})
-
-  .catch(error => {
-            console.error(error);
-            res.status(500).json({ error: 'Hubo un problema al obtener los datos' });
-        });
+  res.render("character", { character, id, image, crest, father, mother, spouse });
 });
 
-frutas.forEach(characters => {
-    console.log(fruta);
+
+app.get("/search", async (req, res) => {
+  try {
+    const name = req.query.name;
+
+    const response = await axios.get('https://anapioficeandfire.com/api/characters', {
+      params: { name: name }
+    });
+
+    const characters = response.data;
+
+    if (characters.length === 0) {
+        res.sendFile(path.join(__dirname, "public", "html", "error.html"));
+    }
+
+    const character = characters[0];
+    const url = character.url;
+    const parts = url.split('/');
+    const id = parts[parts.length - 1].split('?')[0].split('#')[0];
+
+    res.redirect(`/characters/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
 });
+
 
 app.listen(3000, () => {
     console.log("Servidor escuchando en http://localhost:3000");
