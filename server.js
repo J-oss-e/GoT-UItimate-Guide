@@ -9,7 +9,6 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
   res.redirect("/characters/1");
 });
 
