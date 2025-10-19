@@ -1,0 +1,18 @@
+This is for extra points
+
+# Conflicts:
+#	server.js
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# interactive rebase in progress; onto a8968b8
+# Last command done (1 command done):
+#    pick a1932ab # This is for extra points
+# No commands remaining.
+# You are currently rebasing branch 'main' on 'a8968b8'.
+#
+# Changes to be committed:
+#	modified:   public/html/index.html
+#	modified:   server.js
+#
